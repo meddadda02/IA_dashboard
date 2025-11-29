@@ -1,0 +1,9 @@
+package org.example.ia_dashboard.Repository;
+import org.example.ia_dashboard.Entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User,Long> {
+    Optional<User> findByUsername(String username);
+}
