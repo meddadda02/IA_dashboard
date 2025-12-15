@@ -26,14 +26,5 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("Default admin user created: username=admin, password=admin123");
         }
 
-        // Create Regular user if not exists
-        if (userRepository.findByUsername("user1").isEmpty()) {
-            User user = new User();
-            user.setUsername("user1");
-            user.setPassword(passwordEncoder.encode("password123"));
-            user.setRole("ROLE_USER");
-            userRepository.save(user);
-            System.out.println("Default regular user created: username=user1, password=password123");
-        }
     }
 }

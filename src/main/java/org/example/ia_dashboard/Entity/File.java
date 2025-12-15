@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class File{
+public class File {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,9 @@ public class File{
 
     @Lob
     private byte[] data;
+
+    @Column(columnDefinition = "TEXT")
+    private String analysisResult;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

@@ -1,0 +1,5 @@
+product,date,revenue,region
+A,2023-01-01,100,North
+B,2023-01-02,200,South
+A,2023-01-03,150,North
+C,2023-01-04,300,East
