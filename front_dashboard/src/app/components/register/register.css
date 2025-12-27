@@ -1,0 +1,105 @@
+.register-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+}
+
+.register-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.register-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header-custom {
+    background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+    padding: 40px 30px;
+    text-align: center;
+    color: white;
+}
+
+.brand-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+}
+
+.register-title {
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.register-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.card-body-custom {
+    padding: 40px 30px;
+}
+
+.form-floating>.form-control {
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+}
+
+.form-floating>.form-control:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1);
+    background-color: #fff;
+}
+
+.btn-register {
+    padding: 12px;
+    font-weight: 600;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #198754 0%, #157347 100%);
+    border: none;
+}
+
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(25, 135, 84, 0.3);
+}
+
+.alert-custom {
+    border-radius: 10px;
+    font-size: 0.9rem;
+    border: none;
+    background-color: #ffe5e5;
+    color: #d63384;
+}
+
+.login-link {
+    color: #198754;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.login-link:hover {
+    color: #146c43;
+    text-decoration: underline;
+}

@@ -18,6 +18,7 @@ import java.util.List;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final org.example.ia_dashboard.Repository.FileRepository fileRepository;
     private final @Lazy PasswordEncoder passwordEncoder;
 
     public User getCurrentUser() {
@@ -79,9 +80,11 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
+    @org.springframework.transaction.annotation.Transactional
     public boolean deleteUser(Long id) {
         return userRepository.findById(id)
                 .map(user -> {
+                    fileRepository.deleteByUserId(id);
                     userRepository.delete(user);
                     return true;
                 })

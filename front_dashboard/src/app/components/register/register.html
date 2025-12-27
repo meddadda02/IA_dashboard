@@ -1,0 +1,50 @@
+<div class="register-container">
+    <div class="register-card">
+        <div class="card-header-custom">
+            <div class="brand-icon">
+                <i class="bi bi-person-plus-fill"></i>
+            </div>
+            <h3 class="register-title">Créer un compte</h3>
+            <p class="register-subtitle">Rejoignez IA Dashboard dès aujourd'hui</p>
+        </div>
+
+        <div class="card-body-custom">
+            <div *ngIf="error" class="alert alert-custom d-flex align-items-center mb-4" role="alert">
+                <i class="bi bi-exclamation-circle-fill me-2"></i>
+                <div>{{ error }}</div>
+            </div>
+
+            <div *ngIf="successMessage" class="alert alert-success d-flex align-items-center mb-4" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <div>{{ successMessage }}</div>
+            </div>
+
+            <form (ngSubmit)="onSubmit()">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" placeholder="Nom d'utilisateur"
+                        [(ngModel)]="username" name="username" required>
+                    <label for="username"><i class="bi bi-person me-2"></i>Nom d'utilisateur</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                    <input type="password" class="form-control" id="password" placeholder="Mot de passe"
+                        [(ngModel)]="password" name="password" required>
+                    <label for="password"><i class="bi bi-lock me-2"></i>Mot de passe</label>
+                </div>
+
+                <div class="d-grid mb-4">
+                    <button type="submit" class="btn btn-primary btn-register text-white" [disabled]="loading">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"
+                            aria-hidden="true"></span>
+                        {{ loading ? 'Inscription en cours...' : "S'inscrire" }}
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <span class="text-muted">Déjà un compte ?</span>
+                    <a routerLink="/login" class="login-link ms-2">Se connecter</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

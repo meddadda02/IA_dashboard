@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class AdminController {
 
     private final UserService userService;
+    private final org.example.ia_dashboard.Repository.FileRepository fileRepository;
 
     @GetMapping("/users")
     public ResponseEntity<List<UserResponse>> getAllUsers() {
@@ -61,6 +62,7 @@ public class AdminController {
                 .id(user.getId())
                 .username(user.getUsername())
                 .role(user.getRole())
+                .analysisCount(fileRepository.countByUserId(user.getId()))
                 .build();
     }
 }

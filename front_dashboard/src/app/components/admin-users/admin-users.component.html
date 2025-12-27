@@ -1,0 +1,140 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/dashboard">
+            <i class="bi bi-graph-up-arrow me-2"></i>IA Dashboard
+        </a>
+        <div class="d-flex align-items-center gap-3">
+            <a routerLink="/dashboard" class="btn btn-outline-secondary rounded-pill btn-sm">
+                <i class="bi bi-grid-fill me-1"></i>Dashboard
+            </a>
+            <a routerLink="/profile" class="btn btn-outline-primary rounded-pill btn-sm">
+                <i class="bi bi-person-fill me-1"></i>Profile
+            </a>
+            <button class="btn-logout" (click)="logout()">
+                <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="container admin-container fade-in">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">Gestion des Utilisateurs</h2>
+            <p class="text-muted mb-0">Gérez les accès et les rôles du système</p>
+        </div>
+        <button class="btn btn-primary-gradient rounded-pill px-4" (click)="loadUsers()">
+            <i class="bi bi-arrow-clockwise me-2"></i>Actualiser
+        </button>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="stats-card border-start border-4 border-primary">
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="bi bi-people-fill stats-icon text-primary"></i>
+                    </div>
+                    <div>
+                        <div class="stats-label">Total Utilisateurs</div>
+                        <div class="stats-value">{{ stats.totalUsers }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-card border-start border-4 border-danger">
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="bi bi-shield-lock-fill stats-icon text-danger"></i>
+                    </div>
+                    <div>
+                        <div class="stats-label">Administrateurs</div>
+                        <div class="stats-value">{{ stats.adminUsers }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-card border-start border-4 border-success">
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="bi bi-person-check-fill stats-icon text-success"></i>
+                    </div>
+                    <div>
+                        <div class="stats-label">Utilisateurs Standard</div>
+                        <div class="stats-value">{{ stats.regularUsers }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Users Table -->
+    <div class="users-table-card">
+        <div class="table-header">
+            <h5 class="mb-0 fw-bold text-dark">Liste des Inscrits</h5>
+            <div class="input-group" style="width: 300px;">
+                <span class="input-group-text bg-light border-end-0">
+                    <i class="bi bi-search text-muted"></i>
+                </span>
+                <input type="text" class="form-control bg-light border-start-0"
+                    placeholder="Rechercher un utilisateur..." [(ngModel)]="searchTerm">
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table custom-table mb-0">
+                <thead>
+                    <tr>
+                        <th class="ps-4">Utilisateur</th>
+                        <th>ID</th>
+                        <th>Rôle</th>
+                        <th>Analyses</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of filteredUsers()">
+                        <td class="ps-4">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-circle small me-3">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+                                <div class="fw-bold">{{ user.username }}</div>
+                            </div>
+                        </td>
+                        <td><span class="text-muted">#{{ user.id }}</span></td>
+                        <td>
+                            <span class="badge role-badge"
+                                [ngClass]="user.role === 'ROLE_ADMIN' ? 'bg-danger bg-opacity-10 text-danger' : 'bg-primary bg-opacity-10 text-primary'">
+                                {{ user.role === 'ROLE_ADMIN' ? 'Administrateur' : 'Utilisateur' }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-light text-dark border">
+                                <i class="bi bi-bar-chart me-1"></i>
+                                {{ user.analysisCount || 0 }}
+                            </span>
+                        </td>
+                        <td class="text-end pe-4">
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-light me-2" (click)="toggleRole(user)"
+                                    [title]="user.role === 'ROLE_ADMIN' ? 'Rétrograder' : 'Promouvoir'">
+                                    <i class="bi"
+                                        [ngClass]="user.role === 'ROLE_ADMIN' ? 'bi-person-down' : 'bi-person-up'"></i>
+                                </button>
+                                <button class="btn btn-sm btn-light text-danger" (click)="deleteUser(user)"
+                                    title="Supprimer">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -28,7 +28,7 @@ public class AuthController {
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());
         User savedUser = userService.saveUser(user);
-        
+
         return ResponseEntity.ok(org.example.ia_dashboard.dto.UserResponse.builder()
                 .id(savedUser.getId())
                 .username(savedUser.getUsername())
